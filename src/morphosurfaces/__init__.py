@@ -4,7 +4,6 @@ from importlib.metadata import PackageNotFoundError, version
 
 from morphosurfaces.mesh import TriangleMesh
 
-
 try:
     __version__ = version("morphosurfaces")
 except PackageNotFoundError:

@@ -88,7 +88,9 @@ class TriangleMesh:
         if vertex_features is None:
             # add an empty vertex features table
             n_vertices = vertices.shape[0]
-            vertex_features = pd.DataFrame(index=[str(index) for index in range(n_vertices)])
+            vertex_features = pd.DataFrame(
+                index=[str(index) for index in range(n_vertices)]
+            )
 
         vertex_data = ad.AnnData(
             obsm=vertex_arrays, obs=vertex_features, obsp=vertex_graphs
