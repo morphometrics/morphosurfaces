@@ -84,6 +84,12 @@ class TriangleMesh:
         if vertex_arrays is None:
             vertex_arrays = {}
         vertex_arrays.update({VERTICES_KEY: vertices})
+
+        if vertex_features is None:
+            # add an empty vertex features table
+            n_vertices = vertices.shape[0]
+            vertex_features = pd.DataFrame(index=[str(index) for index in range(n_vertices)])
+
         vertex_data = ad.AnnData(
             obsm=vertex_arrays, obs=vertex_features, obsp=vertex_graphs
         )
@@ -92,6 +98,12 @@ class TriangleMesh:
         if face_arrays is None:
             face_arrays = {}
         face_arrays.update({FACES_KEY: faces})
+
+        if face_features is None:
+            # add an empty vertex features table
+            n_faces = faces.shape[0]
+            face_features = pd.DataFrame(index=[str(index) for index in range(n_faces)])
+
         face_data = ad.AnnData(obsm=face_arrays, obs=face_features, obsp=face_graphs)
 
         return cls(vertex_data=vertex_data, face_data=face_data)
